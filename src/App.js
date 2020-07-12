@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useReducer} from 'react';
+import TodoApp from './components/todoApp/TodoApp';
+import TodoContext from './components/todoContext/TodoContext';
+//import tasks from './components/util/tasks';
+import reducer from './components/reducer/reducer';
+
 import './App.css';
 
+
 function App() {
+  const initialState = {
+    todoTasks: [],
+    projects: ['all',],
+    filterByProject: '',
+    filterByPriority: ''
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("AppState", state);
+  //console.log(dispatch);
+
+  useEffect(()=>{
+    localStorage.setItem('todos', JSON.stringify(state))
+  }, [state])
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoContext.Provider value={{state, dispatch}}>
+        <TodoApp/>
+      </TodoContext.Provider>
     </div>
   );
 }

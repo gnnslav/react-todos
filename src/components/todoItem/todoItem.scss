@@ -1,0 +1,45 @@
+@import '../../common/styles/variable';
+
+.todo-item{
+    width: 100%;
+    box-shadow: $todoBoxShadow;
+    background-color: $bgColorLight;
+    color: $textColorDark;
+    border: $inputBorder;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 50px 10px 10px;
+    padding: 20px 0 20px 0;
+    &__block{
+        position: relative;
+        label{
+            position: absolute;
+            left: 10px;
+        }
+        span{
+            padding-left: 20px;
+            text-align: left;
+        }
+        input, textarea{
+            width: 70%;
+            margin-left: 50px;
+            padding: 5px;
+            resize: none;
+            outline: none;
+            background-color: inherit;
+            border-bottom: 1px solid $inputBorder;
+            &::placeholder{
+                color: $textColorLight;
+            }
+        }
+        button{
+            height: 30px;
+            width: 120px;
+            margin-left: 20px;
+            background-color: $btnColor;
+            box-shadow: $btnBoxShadow;
+            color: $textColorLight;
+            cursor: pointer;
+        }
+    }
+}

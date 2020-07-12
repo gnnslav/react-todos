@@ -1,0 +1,75 @@
+@import '../../common/styles/variable';
+
+.form{
+    width: calc(100%-40px);
+    height: 180px;
+}
+
+form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+
+.left-panel{
+    width: 10%;
+    height: 70%;
+    background-color: $bgColorDark;
+    color: $textColorLight;
+    transform: translateX(20%);
+    border: 1px solid $cardBorder;
+    box-shadow: $todoBoxShadow;
+    //transform: translateY(5%);
+    select{
+        background-color: inherit;
+        color: $textColorLight;
+    }
+}
+
+    .right-panel{
+        
+        width: 90%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: $bgColorLight;
+        color: $textColorDark;
+        border: 1px solid $cardBorder;
+        box-shadow: $todoBoxShadow;
+        &__block{
+            width: calc(100%-4px);
+            padding: 5px 2px;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            input, textarea{
+                width: 70%;
+                margin-left: 50px;
+                padding: 5px;
+                resize: none;
+                outline: none;
+                background-color: inherit;
+                border-bottom: 1px solid $inputBorder;
+                &::placeholder{
+                    color: $textColorDark;
+                }
+            }
+            label{
+                position: absolute;
+                left: 20px;
+            }
+            button{
+                height: 30px;
+                width: 120px;
+                margin-left: 20px;
+                background-color: $btnColor;
+                box-shadow: $btnBoxShadow;
+                color: $textColorLight;
+                cursor: pointer;
+            }
+        }
+    }

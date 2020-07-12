@@ -1,0 +1,25 @@
+@import '../../common/styles/variable';
+
+.list{
+    width: 100%;
+    height: 500px;
+    list-style: none;
+    padding-left: 0;
+    border: 1px solid $cardBorder;
+    box-shadow: $todoBoxShadow;
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        width: 10px;
+    } ;
+    &::-webkit-scrollbar-thumb{
+        background-color: $bgColorLight;
+        border: 1px solid $inputBorder;
+        border-radius: 3px;
+    }
+    &::-webkit-scrollbar-track{
+        box-shadow: $todoBoxShadow;
+    }
+    &__item{
+        width: calc(100% - 20px);
+    }
+}

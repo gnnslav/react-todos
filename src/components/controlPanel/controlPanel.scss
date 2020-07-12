@@ -1,0 +1,28 @@
+@import '../../common/styles/variable';
+
+.panel{
+    width: calc(100%-40px);
+    height: 180px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: $bgColorLight;
+    color: $textColorDark;
+    border: 1px solid $cardBorder;
+    box-shadow: $todoBoxShadow;
+    &__btn{
+        height: 30px;
+        width: 120px;
+        color: #FFFAE6;
+        background-color: $btnColor;
+        box-shadow: $btnBoxShadow;
+    }
+    &__label{
+        color: gray;
+    }
+    &__project{
+        height: 30px;
+        width: 120px;
+    }
+}
