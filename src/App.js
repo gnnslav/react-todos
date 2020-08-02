@@ -1,25 +1,25 @@
 import React, {useEffect, useReducer} from 'react';
 import TodoApp from './components/todoApp/TodoApp';
 import TodoContext from './components/todoContext/TodoContext';
-//import tasks from './components/util/tasks';
 import reducer from './components/reducer/reducer';
 
 import './App.css';
 
 
 function App() {
+  
   const initialState = {
-    todoTasks: [],
-    projects: ['all',],
-    filterByProject: '',
-    filterByPriority: ''
+    todoTasks: JSON.parse(localStorage.getItem('todoTasks')) || [],
+    projects: JSON.parse(localStorage.getItem('projects')) || ['all',] ,
+    filterByProject: 'all',
+    filterByPriority: false
   };
+  
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("AppState", state);
-  //console.log(dispatch);
 
   useEffect(()=>{
-    localStorage.setItem('todos', JSON.stringify(state))
+    localStorage.setItem('todoTasks', JSON.stringify(state.todoTasks));
+    localStorage.setItem('projects', JSON.stringify(state.projects));
   }, [state])
 
   

@@ -6,18 +6,7 @@ import TodoContext from '../todoContext/TodoContext';
 import './todoList.scss';
 
 const TodoList = (props) =>{
-    //console.log("todolist", props);
     const {state, dispatch} = useContext(TodoContext);
-    //console.log("dispatch", dispatch);
-    //console.log("STATE", state);
-    //const todoTasks = dispatch();
-    //const todoTasks = state.todoTasks;
-    
-    //console.log("todoTasks", todoTasks);
-    //const {todoTasks} = props;
-    // useEffect(()=>{
-    //     const newTodoList = filteredTodoList();
-    // }, [newTodoList])
 
     const sortTasks = todos => {
         const priority = state.filterByPriority;
@@ -31,18 +20,17 @@ const TodoList = (props) =>{
     const filteredTodoList = () =>{
         const todo = state.todoTasks;
         const filterTodo = state.filterByProject;
-        //const priority = state.filterByPriority;
-        //console.log(priority);
-        if(filterTodo){
+        if(filterTodo !== 'all'){
             return sortTasks(todo.filter((item => item.project === filterTodo)));
-        } else{
+        } else if(filterTodo=== 'all'){
+            return sortTasks(todo);
+        } else if(filterTodo){
+            console.log("todo", todo)
             return todo;
         }
         
     }
     const newTodoList = filteredTodoList();
-    //console.log(filteredTodoList());
-   //console.log("new", newTodoList);
     useEffect(()=>{
         //filteredTodoList();
     }, [newTodoList])
@@ -76,23 +64,6 @@ const TodoList = (props) =>{
             })}
     
         </ul>
-        // <TodoContext.Consumer>
-        //     {
-        //         tasks =>{
-        //             return(                   
-        //                 <ul className="container">
-        //                     {tasks.map((task, index)=>{
-        //                         return(
-        //                             <li key={index}>
-        //                                 <TodoItem task={task}/>
-        //                             </li>
-        //                         );
-        //                     })}
-        //                 </ul>
-        //             )
-        //         }
-        //     }
-        // </TodoContext.Consumer>
     )
 }
 export default TodoList;

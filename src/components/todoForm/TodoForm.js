@@ -1,27 +1,23 @@
 import React, {useState, useContext} from 'react';
 import TodoContext from '../todoContext/TodoContext';
 import priorityObj from '../util/priority';
+import Popup from '../popup/Popup';
 import './todoForm.scss';
 
-const TodoForm = (props) => {
-    
+const TodoForm = (props) => {    
     const {canselForm} = props;
-    //console.log("form props", props);
     const [task, setTask] = useState({
         name: "",
         project: "",
-        priority: "hight",
+        priority: "high",
         description: "",
         id: 1
     });
-    const {state, dispatch} = useContext(TodoContext);
-    console.log("form state", state);
-    //console.log("form dispatch", dispatch);
-    //console.log(task);
-
+    const [showPopup, setShowPopup] = useState([]);
+    const {dispatch} = useContext(TodoContext);
     const handleChange = (e) =>{
         const { value, name } = e.target;
-        const taskId = Math.floor(Math.random() * 1800);
+        const taskId = Math.random().toString().replace(".", "");
         if( value === '' ){
             return;
         }
@@ -31,6 +27,14 @@ const TodoForm = (props) => {
     const onSubmit = (e) => {
         e.preventDefault();
         if(task.name === "" || task.project === "" || task.description === ""){
+            console.log('formTask', task);
+            const empty = Object.keys(task).reduce((acc, key)=>{
+                if(task[key] === ""){
+                    acc.push(key);
+                }
+                return acc;
+            }, []);
+            setShowPopup(empty);
             return;
         }
         dispatch({
@@ -40,17 +44,18 @@ const TodoForm = (props) => {
         setTask({
             name: "",
             project: "",
-            priority: "hight",
+            priority: "high",
             description: "",
             id: 1
         });
+        setShowPopup([]);
     }
 
     return(
         <div className="form">
+            {(showPopup.length !== 0) ? <Popup text={showPopup}/> : null}
             <form onSubmit={onSubmit}>
-                <div className="left-panel">
-                    
+                <div className="left-panel">                    
                         <label htmlFor="priority" >Priority</label>
                         <select 
                             name="priority"
@@ -60,7 +65,6 @@ const TodoForm = (props) => {
                              return <option key={index}>{item}</option>
                             })}
                         </select>
-                    
                 </div>
                 <div className="right-panel">
                     <div className="right-panel__block">

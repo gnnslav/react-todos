@@ -3,25 +3,19 @@ import TodoContext from '../todoContext/TodoContext';
 import './controlPanel.scss';
 
 const ControlPanel = (props) =>{
-    //console.log("Control props", props);
     const {showForm} = props;
     const {state, dispatch} = useContext(TodoContext);
-    //console.log("dispatch", dispatch);
-    //console.log(state);
     const [priority, setPriority] = useState(false);
     const todoProjects = state.projects;
-    //console.log(todoProjects);
-    //console.log("priority", priority);
-    //console.log(setPriority);
-
+    
     const filteredTasks = (e) => {
-        //console.log("target", e.target.value);
         dispatch({
             type: "FILTERED_TASKS",
             filterByProject: e.target.value,
             filterByPriority: priority
         });
     }
+        
     
     return(
         <div className="panel">

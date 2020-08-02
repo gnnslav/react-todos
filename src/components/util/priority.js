@@ -1,8 +1,7 @@
 // const priorityArr= [ 'hight', 'middle', 'low'];
 const priorityObj = {
-    hight: 1,
-    middle: 2,
-    low: 3
+    high: 1,
+    low: 2
 };
 
 export default priorityObj;

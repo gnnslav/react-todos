@@ -1,29 +1,30 @@
 @import '../../common/styles/variable';
 
 .todo-item{
-    width: 100%;
-    box-shadow: $todoBoxShadow;
-    background-color: $bgColorLight;
-    color: $textColorDark;
-    border: $inputBorder;
+    position: relative;
     display: flex;
     flex-direction: column;
-    margin: 10px 50px 10px 10px;
+    width: 90%;
+    margin: 10px auto;
     padding: 20px 0 20px 0;
+    color: $textColorDark;
+    border: $inputBorder;
+    box-shadow: $todoBoxShadow;
+    background-color: $bgColorLight;
     &__block{
         position: relative;
         label{
             position: absolute;
-            left: 10px;
+            left: 70px;
         }
         span{
             padding-left: 20px;
             text-align: left;
         }
         input, textarea{
-            width: 70%;
-            margin-left: 50px;
-            padding: 5px;
+            width: 50%;
+            margin-left: 200px;
+            padding: 10px;
             resize: none;
             outline: none;
             background-color: inherit;
@@ -36,10 +37,55 @@
             height: 30px;
             width: 120px;
             margin-left: 20px;
+            color: $textColorLight;
             background-color: $btnColor;
             box-shadow: $btnBoxShadow;
-            color: $textColorLight;
             cursor: pointer;
         }
     }
+    .ptiority-level{
+        position: absolute;
+        left: -10px;
+        width: 50px;
+        height: 30px;
+        text-shadow:
+        0 0 6px rgba(202,228,225,0.92),
+        0 0 30px rgba(202,228,225,0.34),
+        0 0 12px rgba(30,132,242,0.52),
+        0 0 21px rgba(30,132,242,0.92),
+        0 0 34px rgba(30,132,242,0.78),
+        0 0 54px rgba(30,132,242,0.92);
+        border-radius: 0px 4px 4px 8px;
+        background-color: $btnColor;
+        &:before{
+            position: absolute;
+            content: '';
+            top: -5px;
+            left: 0;
+            width: 10px;
+            height: 5px;
+            z-index: 1;
+            background-color: $bgColorLight;
+            border-bottom-left-radius: 10px;
+            border-bottom-color: $inputBorder;
+        }
+        &:after{
+            position: absolute;
+            content: '';
+            top: -10px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: inherit;
+            border-top-left-radius: 8px;
+            border-top-color: $inputBorder;
+        }    
+    }
+
+    .high{
+        color: #f20d0d;
+    } 
+    .low{
+        color: #2edc2e;
+    } 
 }

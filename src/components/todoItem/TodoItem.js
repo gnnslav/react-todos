@@ -6,7 +6,6 @@ import priorityObj from '../util/priority';
 import './todoItem.scss';
 
 const TodoItem = (props) => {
-    //console.log(props.task);
     const {task, saveTask, deleteTask} = props;
     const [change, setChange] = useState(false);
     const [description, setDescription] = useState(false);
@@ -17,20 +16,21 @@ const TodoItem = (props) => {
         description: task.description,
         id: task.id
     });
-    //console.log("change", change);
-    //console.log("newTask", newTask);
 
     const changeField = (e) =>{
-        //console.log(e.target);
         const { value, name } = e.target;
-        //console.log("name", name, "value", value);
-        //console.log(setNewTask);
-        setNewTask({ ...newTask, [name]: value, id: newTask.id });
+        setNewTask({ ...newTask, [name]: value, id: task.id });
+    }
+
+    const priorityColor = ()=>{
+        const style = (task.priority==='high') ? 'high' : 'low';
+        return style;
     }
 
 
     return (
         <div className="todo-item">
+            <span className={"ptiority-level " + priorityColor()}>{newTask.priority}</span>
             <div className="todo-item__block">
                 <label htmlFor="name">Task name</label>
                 {(change) 
@@ -103,6 +103,7 @@ const TodoItem = (props) => {
                 <button
                     type="button"
                     onClick={() => {
+                        console.log('props', props.task.project);
                         deleteTask(props.task);
                     }}
                 >Delete</button>
